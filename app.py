@@ -38,22 +38,12 @@ def webhook():
         r = make_response(res)
         r.headers["Content-Type"] = 'application/json'
         return r
-@app.route("/get")
-def get():
-    con = sq.connect("database.db")
-    cur = con.cursor()
-    cur.execute("select command from data where mode !='respect'")
-    data = cur.fetchone() or "ok"
-    cur.execute("delete from data where mode !='respect'")
-    con.commit()
-    con.close()
-    return str(data)
 
 def processRequest(req):
     query_response = req.get("queryResult",{})
 
-    queryText = query_response.get('queryText','')
-    parameters = queryText.get('parameters','')
+    # queryText = query_response.get('queryText','')
+    parameters = query_response.get('parameters','')
     speech = "Sorry, I didn't understand what you are saying"
     if parameters:
         speech = "Hi," +str(parameters.get("name",''))+" glad to meet you"
