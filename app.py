@@ -49,7 +49,7 @@ def processRequest(req):
     responses = ["Nice to meet you", "Glad to meet you","Good day"]
     note = responses[random.randint(1,len(responses))-1]
     if parameters:
-        speech = "Hi," +str(parameters.get("name",''))+str(note)
+        speech = "Hi" +str(parameters.get("name",''))+","+str(note)
     return {
         "fulfillmentText": speech
         }
