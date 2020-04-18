@@ -45,8 +45,11 @@ def processRequest(req):
     # queryText = query_response.get('queryText','')
     parameters = query_response.get('parameters','')
     speech = "Sorry, I didn't understand what you are saying"
+    import random
+    responses = ["Nice to meet you", "Glad to meet you","Good day"]
+    note = responses[random.randint(1,len(responses))-1]
     if parameters:
-        speech = "Hi," +str(parameters.get("name",''))+" glad to meet you"
+        speech = "Hi," +str(parameters.get("name",''))+str(note)
     return {
         "fulfillmentText": speech
         }
